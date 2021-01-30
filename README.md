@@ -1,0 +1,2 @@
+# BindQQ
+Bukkit Plugin BindQQ
