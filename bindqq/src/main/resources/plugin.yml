@@ -1,0 +1,17 @@
+name: Bindqq
+version: ${project.version}
+main: cn.ctcraft.bindqq.Bindqq
+commands:
+  bqq:
+    description: bindqq main command
+  cqq:
+    description: showqq
+  cname:
+    description: showname
+permissions:
+  BindQQ.bqq:
+    default: op
+  BindQQ.cqq:
+    default: op
+  BindQQ.cname:
+    default: op

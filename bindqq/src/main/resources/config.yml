@@ -1,0 +1,22 @@
+#插件版本
+version: ${project.version}
+#数据存储配置
+database:
+  #存储类型 可用类型有: properties本地文件存储 yaml本地文件存储 json本地文件存储 sqlite数据库存储 mysql数据库存储
+  type: properties
+  mysql:
+    host: localhost
+    port: 3306
+    database: backpack
+    user: root
+    password: password
+    usessl: false
+#功能性配置
+config:
+  #未绑定时是否允许移动
+  move: false
+  #未绑定时是否踢出游戏
+  kick:
+    use: true
+    #进游戏多少秒内未绑定qq会踢出游戏
+    time: 60
