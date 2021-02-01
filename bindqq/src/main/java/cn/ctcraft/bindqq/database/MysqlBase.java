@@ -10,18 +10,17 @@ public class MysqlBase implements Database {
     private static ArrayList<Connection> pool = new ArrayList<>();
 
     public MysqlBase(String host,String user,String pass,String database,String port,boolean ssl){
-        this.info.put("autoReconnect", "true");
         this.info.put("user", user);
         this.info.put("password", pass);
-        this.info.put("useUnicode", "true");
-        this.info.put("characterEncoding", "utf8");
         this.info.put("useSSL", ssl);
 
-        this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+        this.url = "jdbc:mysql://" + host + ":" + port + "/" + database+"?useSSL="+ssl+"&characterEncoding=utf8&autoReconnect=true&useUnicode=true";
 
         for(int i = 0; i < 8; ++i) {
             pool.add((Connection) null);
         }
+
+        load();
     }
 
     public Connection getConnection() {
@@ -34,11 +33,11 @@ public class MysqlBase implements Database {
                 if (connection != null && !connection.isClosed() && connection.isValid(10)) {
                     return connection;
                 }
-
-                connection = DriverManager.getConnection(this.url, this.info);
+                Class.forName("com.mysql.jdbc.Driver");
+                connection = DriverManager.getConnection(this.url, info.getProperty("user"),info.getProperty("password"));
                 pool.set(i, connection);
                 return connection;
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 ++i;
             }
