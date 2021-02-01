@@ -57,7 +57,13 @@ public class BindCommands implements CommandExecutor {
             }
         }
         if (label.equalsIgnoreCase("cqq")) {
-            String cqq = cqq(Long.valueOf(args[0]));
+            String cqq ="";
+            try {
+               cqq = cqq(Long.valueOf(args[0]));
+            }catch (NumberFormatException e){
+                sender.sendMessage("§c§l[BindQQ] 参数错误,正确使用方式为: /cqq [qq号]");
+                return true;
+            }
             if (cqq != null) {
                 String string = bindqq.langConfig.getString("Message.Success.10");
                 sender.sendMessage(string.replace("&","§").replace("%name%",cqq).replace("%QQ%",args[0]));
@@ -83,7 +89,12 @@ public class BindCommands implements CommandExecutor {
     }
 
     private String cname(String name) {
-        return bindqq.database.getQQ(Bukkit.getPlayer(name).getUniqueId().toString());
+        Player player = Bukkit.getPlayer(name);
+        if(player == null){
+            return null;
+        }
+        String s = player.getUniqueId().toString();
+        return bindqq.database.getQQ(s);
     }
 
     private void BindExecute(Player player, String[] args) {

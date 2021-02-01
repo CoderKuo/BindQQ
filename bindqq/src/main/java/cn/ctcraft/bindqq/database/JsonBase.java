@@ -85,6 +85,9 @@ public class JsonBase implements Database {
     public String getQQ(String uuid) {
         JsonObject jsonObject = getJsonObject();
         JsonElement jsonElement = jsonObject.get(uuid);
+        if(jsonElement == null){
+            return null;
+        }
         return jsonElement.getAsString();
     }
 

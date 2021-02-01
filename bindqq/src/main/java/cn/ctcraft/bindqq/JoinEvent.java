@@ -22,17 +22,10 @@ public class JoinEvent implements Listener {
         Player player = e.getPlayer();
         String qq = database.getQQ(player.getUniqueId().toString());
         if(qq == null){
-            player.sendMessage("§c§l请在"+bindqq.getConfig().getInt("config.kick.time")+"秒内输入/bqq [qq号]绑定qq,否则将被踢出服务器!");
-            BukkitTask bukkitTask = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    String qq = database.getQQ(player.getUniqueId().toString());
-                    if(qq == null){
-                        player.kickPlayer("§c§l[BindQQ] 请及时绑定QQ,以保证正常游戏");
-                    }
-                    cancel();
-                }
-            }.runTaskTimer(bindqq,5000,5000);
+            int anInt = bindqq.getConfig().getInt("config.kick.time");
+            player.sendMessage("§c§l请在"+anInt+"秒内输入/bqq [qq号]绑定qq,否则将被踢出服务器!");
+            KickTimer kickTimer = new KickTimer(player);
+            kickTimer.runTaskTimer(bindqq,anInt*20,anInt*20);
         }
     }
 }
