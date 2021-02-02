@@ -32,6 +32,10 @@ public class BindCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("bqq")) {
+            if(!sender.hasPermission("BindQQ.bqq")){
+                sender.sendMessage("§c§l权限不足!");
+                return true;
+            }
             if (!(sender instanceof Player)) {
                 sender.sendMessage("§c§l[BindQQ] 该命令只允许玩家使用!");
                 return true;
@@ -46,6 +50,10 @@ public class BindCommands implements CommandExecutor {
             }
         }
         if (label.equalsIgnoreCase("cname")) {
+            if(!sender.hasPermission("BindQQ.cname")){
+                sender.sendMessage("§c§l权限不足!");
+                return true;
+            }
             String cname = cname(args[0]);
             if (cname != null) {
                 String string = bindqq.langConfig.getString("Message.Success.9");
@@ -57,6 +65,10 @@ public class BindCommands implements CommandExecutor {
             }
         }
         if (label.equalsIgnoreCase("cqq")) {
+            if(!sender.hasPermission("BindQQ.cqq")){
+                sender.sendMessage("§c§l权限不足!");
+                return true;
+            }
             String cqq ="";
             try {
                cqq = cqq(Long.valueOf(args[0]));
