@@ -1,4 +1,4 @@
-name: ctBindqq
+name: ctBindQQ
 version: ${project.version}
 main: cn.ctcraft.bindqq.Bindqq
 commands:

@@ -43,6 +43,9 @@ public final class Bindqq extends JavaPlugin {
         if(kick){
             getServer().getPluginManager().registerEvents(new JoinEvent(),this);
         }
+
+        Metrics metrics = new Metrics(this);
+
         getLogger().info("§e§l>>>绑定QQ插件加载成功!");
     }
 
