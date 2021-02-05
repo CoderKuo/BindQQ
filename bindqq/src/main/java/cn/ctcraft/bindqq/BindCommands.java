@@ -45,7 +45,7 @@ public class BindCommands implements CommandExecutor {
             }else{
                 List<String> lang = bindqq.langConfig.getStringList("Message.help");
                 for (String s : lang) {
-                    sender.sendMessage(s);
+                    sender.sendMessage(s.replace("&","§"));
                 }
             }
         }
