@@ -14,7 +14,7 @@ public class KickTimer extends BukkitRunnable {
         Bindqq plugin = Bindqq.getPlugin(Bindqq.class);
         String qq = plugin.database.getQQ(player.getUniqueId().toString());
         if(qq == null){
-            player.kickPlayer("§c§l[BindQQ] 请及时绑定QQ,以保证正常游戏");
+            player.kickPlayer(plugin.langConfig.getString("Message.Success.12").replace("&","§"));
             cancel();
         }else {
             cancel();

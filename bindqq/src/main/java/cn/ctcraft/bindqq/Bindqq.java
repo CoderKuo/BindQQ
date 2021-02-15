@@ -11,6 +11,7 @@ import java.io.File;
 public final class Bindqq extends JavaPlugin {
     Database database;
     YamlConfiguration langConfig;
+    String prefix;
 
     @Override
     public void onEnable() {
@@ -45,6 +46,8 @@ public final class Bindqq extends JavaPlugin {
         }
 
         Metrics metrics = new Metrics(this);
+
+        prefix = langConfig.getString("Message.prefix");
 
         getLogger().info("§e§l>>>绑定QQ插件加载成功!");
     }

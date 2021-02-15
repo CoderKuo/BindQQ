@@ -1,5 +1,7 @@
 package cn.ctcraft.bindqq.database;
 
+import java.util.List;
+
 public interface Database {
     public void load();
 
@@ -7,7 +9,7 @@ public interface Database {
     public String getQQ(String uuid);
     public boolean del(String uuid);
     public boolean setQQ(String uuid,Long qq);
-    public String getName(Long qq);
+    public List<String> getName(Long qq);
 
 
 }

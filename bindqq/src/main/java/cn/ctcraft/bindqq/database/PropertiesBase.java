@@ -3,9 +3,7 @@ package cn.ctcraft.bindqq.database;
 import cn.ctcraft.bindqq.Bindqq;
 
 import java.io.*;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 
 public class PropertiesBase implements Database {
@@ -112,7 +110,7 @@ public class PropertiesBase implements Database {
     @Override
     public String getQQ(String uuid) {
         Properties dataProperties = getDataProperties();
-        if(dataProperties!=null){
+        if (dataProperties != null) {
             return (String) dataProperties.get(uuid);
         }
         return null;
@@ -121,7 +119,7 @@ public class PropertiesBase implements Database {
     @Override
     public boolean del(String uuid) {
         Properties dataProperties = getDataProperties();
-        if(dataProperties!=null){
+        if (dataProperties != null) {
             dataProperties.remove(uuid);
             return saveDataProperties(dataProperties);
         }
@@ -131,7 +129,7 @@ public class PropertiesBase implements Database {
     @Override
     public boolean setQQ(String uuid, Long qq) {
         Properties dataProperties = getDataProperties();
-        if(dataProperties!=null){
+        if (dataProperties != null) {
             dataProperties.setProperty(uuid, String.valueOf(qq));
             return true;
         }
@@ -139,17 +137,18 @@ public class PropertiesBase implements Database {
     }
 
     @Override
-    public String getName(Long qq) {
+    public List<String> getName(Long qq) {
+        List<String> list = new ArrayList<>();
         Properties dataProperties = getDataProperties();
-        if(dataProperties!=null){
+        if (dataProperties != null) {
             Set<Object> strings = dataProperties.keySet();
             for (Object string : strings) {
                 Object o = dataProperties.get(string);
-                if(o.toString().equalsIgnoreCase(String.valueOf(qq))){
-                    return (String) string;
+                if (o.toString().equalsIgnoreCase(String.valueOf(qq))) {
+                    list.add((String) string);
                 }
             }
         }
-        return null;
+        return list;
     }
 }

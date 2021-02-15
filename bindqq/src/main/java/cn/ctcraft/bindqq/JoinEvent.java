@@ -26,6 +26,9 @@ public class JoinEvent implements Listener {
             player.sendMessage("§c§l请在"+anInt+"秒内输入/bqq [qq号]绑定qq,否则将被踢出服务器!");
             KickTimer kickTimer = new KickTimer(player);
             kickTimer.runTaskTimer(bindqq,anInt*20,anInt*20);
+            TitleTimer titleTimer = new TitleTimer(player);
+            anInt = bindqq.getConfig().getInt("config.title.time");
+            titleTimer.runTaskTimer(bindqq,anInt*20,anInt*20);
         }
     }
 }

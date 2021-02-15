@@ -2,6 +2,7 @@ package cn.ctcraft.bindqq.database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class MysqlBase implements Database {
@@ -197,7 +198,8 @@ public class MysqlBase implements Database {
     }
 
     @Override
-    public String getName(Long qq) {
+    public List<String> getName(Long qq) {
+        List<String> list = new ArrayList<>();
         ResultSet rs = null;
         PreparedStatement ptmt = null;
         Connection conn = null;
@@ -207,14 +209,14 @@ public class MysqlBase implements Database {
             ptmt = conn.prepareStatement(sql);
             ptmt.setLong(1,qq);
             rs = ptmt.executeQuery();
-            if(rs.next()){
-                return rs.getString(1);
+            while (rs.next()){
+                list.add(rs.getString(1));
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             close(rs,ptmt,conn);
         }
-        return null;
+        return list;
     }
 }

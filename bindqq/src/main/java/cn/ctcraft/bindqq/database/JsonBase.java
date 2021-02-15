@@ -4,6 +4,8 @@ import cn.ctcraft.bindqq.Bindqq;
 import com.google.gson.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -107,15 +109,16 @@ public class JsonBase implements Database {
     }
 
     @Override
-    public String getName(Long qq) {
+    public List<String> getName(Long qq) {
+        List<String> list = new ArrayList<>();
         JsonObject jsonObject = getJsonObject();
         Set<Map.Entry<String, JsonElement>> entries = jsonObject.entrySet();
         for (Map.Entry<String, JsonElement> entry : entries) {
             long asLong = entry.getValue().getAsLong();
             if (asLong == qq){
-                return entry.getKey();
+                list.add(entry.getKey());
             }
         }
-        return null;
+        return list;
     }
 }

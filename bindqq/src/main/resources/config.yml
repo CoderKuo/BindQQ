@@ -13,6 +13,8 @@ database:
     usessl: false
 #功能性配置
 config:
+  #一个QQ允许绑定几个游戏账号
+  limited: 1
   #未绑定时是否允许移动
   move: false
   #未绑定时是否踢出游戏
@@ -20,3 +22,20 @@ config:
     use: true
     #进游戏多少秒内未绑定qq会踢出游戏
     time: 60
+  #未绑定屏幕标题提示
+  title:
+    use: true
+    #提示频率
+    time: 3
+    #提示内容
+    message:
+      #标题
+      title: '&a请输入/bqq [QQ号]绑定QQ'
+      #副标题
+      subtitle: '&c请及时绑定以避免被踢出服务器!'
+      #标题淡入时间,以tick为单位.默认值取10.
+      fadeIn: 10
+      #标题停留/展示时长,以tick为单位.默认值取70.
+      stay: 50
+      #标题淡出时间,以tick为单位.默认值取20.
+      fadeOut: 10

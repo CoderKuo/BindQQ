@@ -16,3 +16,7 @@ Message:
     # /cname 查询提醒  %name%为玩家名  %QQ%为QQ号  请区分大小写
     11: "&e&l该QQ还没有玩家绑定,或该玩家未在线"
     # /cname 查询QQ未被绑定
+    12: "&c&l请及时绑定QQ,以保证正常游戏"
+    # 超过绑定限制提醒
+    13: "&c&l仅允许一个QQ号绑定%limited%个游戏账号"
+  prefix: "[BindQQ]"
