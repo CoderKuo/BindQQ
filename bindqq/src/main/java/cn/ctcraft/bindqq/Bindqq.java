@@ -2,7 +2,6 @@ package cn.ctcraft.bindqq;
 
 import cn.ctcraft.bindqq.database.*;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,8 +12,16 @@ public final class Bindqq extends JavaPlugin {
     YamlConfiguration langConfig;
     String prefix;
 
+    public static Bindqq getInstance() {
+        return instance;
+    }
+
+    private static Bindqq instance;
+
+
     @Override
     public void onEnable() {
+        instance = this;
 
         this.getCommand("bqq").setExecutor(BindCommands.getInstance());
         this.getCommand("cqq").setExecutor(BindCommands.getInstance());
